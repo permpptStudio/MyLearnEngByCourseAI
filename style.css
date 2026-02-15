@@ -1,0 +1,199 @@
+/* 1. Base Setup & Fonts */
+:root {
+    --bg-dark: #0f172a;           /* สีพื้นหลังเข้มแบบ Slate 900 */
+    --bg-card: rgba(30, 41, 59, 0.7); /* สีการ์ดโปร่งแสง */
+    --accent-blue: #38bdf8;       /* สีฟ้าสว่าง (Cyan/Sky) */
+    --accent-purple: #818cf8;     /* สีม่วง Indigo */
+    --text-main: #f1f5f9;         /* สีตัวอักษรหลัก */
+    --text-muted: #94a3b8;        /* สีตัวอักษรจาง */
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.05) 0%, transparent 50%);
+    color: var(--text-main);
+    font-family: 'Inter', 'Outfit', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* 2. Navigation */
+.navbar {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 3. Hero Section */
+.hero {
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem); /* ปรับขนาดตามจออัตโนมัติ */
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(to bottom, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 4. Course Grid & Glassmorphism Card */
+.course-section {
+    padding-bottom: 80px;
+}
+
+.course-section h2 {
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    border-left: 4px solid var(--accent-blue);
+    padding-left: 15px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.course-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.course-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(56, 189, 248, 0.05), transparent);
+    transform: translateX(-100%);
+    transition: 0.6s;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.course-card:hover::before {
+    transform: translateX(100%);
+}
+
+/* Card Elements */
+.badge {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent-blue);
+    padding: 4px 14px;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.course-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.course-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tags span {
+    color: var(--accent-purple);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* 5. Advanced Button */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 12px;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+}
+
+.btn:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+}
+
+/* 6. Footer */
+.footer {
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+    .hero h1 { font-size: 2rem; }
+    .course-grid { grid-template-columns: 1fr; }
+}
